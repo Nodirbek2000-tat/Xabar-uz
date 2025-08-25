@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Yangilik Qo'shish{% endblock title %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg" style="width: 30rem;">
+        <div class="card-body">
+            <h3 class="card-title text-center text-primary">Yangilik Qo'shish</h3>
+            <hr>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}  <!--|crispy-->
+                <div class="d-grid gap-2 mt-3">
+                    <button type="submit" class="btn btn-success btn-lg">Qo'shish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Rasm yuklash</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Yangi rasm yuklash</h1>-->
+<!--    <form method="POST" enctype="multipart/form-data">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p}}-->
+<!--        <button type="submit">-->
+<!--            Yuklash-->
+<!--        </button>-->
+
+<!--    </form>-->
+
+<!--</body>-->
+<!--</html>-->

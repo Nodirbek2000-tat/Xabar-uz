@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sport Yangiliklari{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">⚽️ Sport Yangiliklari</h2>
+
+    <div class="row g-4">
+        {% for new in sport_news %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    {% if new.image %}
+                        <img src="{{ new.image.url }}" class="card-img-top" alt="{{ new.title }}">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <a href="{% url 'detail' new.slug %}" class="text-decoration-none text-dark">
+                                {{ new.title|truncatewords:12 }}
+                            </a>
+                        </h5>
+                        <p class="card-text text-muted small mb-2">
+                            <i class="far fa-clock me-1"></i>{{ new.published_time|date:"d-m-Y H:i" }}
+                        </p>
+                        
+                        <a href="{% url 'detail' new.slug %}" class="mt-auto btn btn-outline-primary btn-sm">Batafsil</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">Hozircha sport yangiliklari mavjud emas.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

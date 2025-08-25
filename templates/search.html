@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Qidiruv Natijalari{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <h3 class="text-center mb-4">Qidiruv natijalari: {{ response|length }}</h3>
+
+    {% if response %}
+        <div class="row">
+            {% for new in response %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if new.image %}
+                            <img src="{{ new.image.url }}" class="card-img-top" alt="{{ new.title }}">
+                        {% else %}
+                            <img src="{% static 'img/no-image.png' %}" class="card-img-top" alt="Rasm yo'q">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ new.title }}</h5>
+                            <a href="{% url 'detail' new.slug %}" class="btn btn-primary btn-sm">Batafsil</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            {{ new.published_time|date:"d-m-Y H:i" }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">Hech qanday natija topilmadi.</p>
+    {% endif %}
+    <div class="text-center mt-4">
+        {% if page_obj.has_previous %}
+            <a href="?q={{ q }}&page={{ page_obj.previous_page_number }}">⏪ Oldingi</a>
+        {% endif %}
+
+        <span class="mx-2">Sahifa {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?q={{ q }}&page={{ page_obj.next_page_number }}">Keyingi ⏩</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Mahalliy Yangiliklari{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Xorij Yangiliklari</h2>
+
+    <div class="row g-4">
+        {% for foreign in foreign_news %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    {% if new.image %}
+                        <img src="{{ foreign.image.url }}" class="card-img-top" alt="{{ foreign.title }}">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <a href="{% url 'detail' foreign.slug %}" class="text-decoration-none text-dark">
+                                {{ new.title|truncatewords:12 }}
+                            </a>
+                        </h5>
+                        <p class="card-text text-muted small mb-2">
+                            <i class="far fa-clock me-1"></i>{{ foreign.published_time|date:"d-m-Y H:i" }}
+                        </p>
+                        <a href="{% url 'detail' foreign.slug %}" class="mt-auto btn btn-outline-primary btn-sm">Batafsil</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">Hozircha xorij yangiliklari mavjud emas.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

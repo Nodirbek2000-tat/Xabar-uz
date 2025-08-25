@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Tizimga kirish{% endblock %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg" style="width: 30rem;">
+        <div class="card-body">
+            <h3 class="card-title text-center text-primary">Ro'yxatdan O'tish</h3>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+
+                <div class="d-grid gap-2 mt-3">
+                    <button type="submit" class="btn btn-success btn-lg">Kirish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

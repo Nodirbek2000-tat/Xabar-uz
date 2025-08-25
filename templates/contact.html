@@ -1,0 +1,84 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Aloqa sahifasi{% endblock title %}
+
+{% block content %}
+        
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Contact</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+        
+        
+        <!-- Contact Start -->
+        <div class="contact">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        {% if error %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                        {% endif %}
+
+                        {% if success %}
+                        <div class="alert alert-success">{{ success }}</div>
+                        {% endif %}
+
+                        <div class="form">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" placeholder="Your Name" name="full_name" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="email" class="form-control" placeholder="Your Email" name="eemail"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Subject" name="subject" />
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="5" placeholder="Message " name="message"></textarea>
+                                </div>
+                                <div><button class="btn" type="submit">Xabar yuborish</button></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.985767636229!2d-73.52689268518203!3d40.78432704112558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c281127307115f%3A0x90d5abaf2f0279de!2sTerry%20Ln%2C%20Jericho%2C%20NY%2011753%2C%20USA!5e0!3m2!1sen!2sbd!4v1580837516748!5m2!1sen!2sbd" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-info">
+                            <h3>Biz bilan bog'laning</h3>
+                            <p>
+                                Har qanday savol yoki takliflaringiz bo‘lsa, biz bilan bog‘laning — sizga mamnuniyat bilan yordam beramiz!
+                            </p>
+                            <p><i class="fa fa-map-marker"></i>Samarqand shahar,Amir Temur ko'chasi 9-A uy</p>
+                            <p><i class="fa fa-envelope"></i>nodirbek.shukurov09q@gmail.com</p>
+                            <p><i class="fa fa-phone"></i>+998-50-005-68-21</p>
+                            <div class="social">
+                             <a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com"target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.linkedin.com"target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com"target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://telegram.org" target="_blank"><i class="fab fa-telegram"></i></a>
+                            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+        
+{% endblock %}
